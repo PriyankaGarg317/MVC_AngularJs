@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>MVC in AngularJS</title>
+	<script type="text/javascript" src="angular.min.js"></script>
+	<script type="text/javascript" src="app.js"></script>
+	<script type="text/javascript" src="logic.js"></script>
+	<script type="text/javascript" src="model.js"></script>
+	<script type="text/javascript" src="controller.js"></script>
+
+	   <style>
+        .red {
+            color: red;
+        }
+        
+        .green {
+            color: green;
+        }
+        .size {
+            width: 100px;    
+            height: 100px;
+        }
+        ul{
+        	list-style-type: none;
+        }
+        .addcart-btn{
+        	background-color: blue;
+        	border:none;
+        	color: #ffffff;
+        	text-align: center;
+        	letter-spacing: 0.5px;
+        	text-transform: uppercase;
+        	padding: 2% 6%;
+        	margin-bottom: 2%;
+        }
+        li{
+        	display: inline-block;
+        	margin: 0 1%;
+        }
+    </style>
+</head>
+<body ng-app="shopapp">
+	<div class="main-content" ng-controller = "myctrl">
+		<label>Salary</label>
+		<input type="text" ng-model="salary" placeholder="Type Salary">
+		<button ng-click="compute()">Compute Salary</button>
+		<table>
+			<tr class="{{className}}">
+				<td>HRA is :</td>
+				<td>{{hra}}</td>
+			</tr>
+			<tr class="{{className}}">
+				<td>DA is :</td>
+				<td>{{da}}</td>
+			</tr>
+		</table>
+		<hr>
+
+		<button ng-click ="doajax()">Call Ajax</button>
+		<input type="text" ng-model="search" placeholder="Type to Search">
+		<p id="totalCart">Total Cart : {{cartcount}} </p>
+        <ul>
+            <li ng-repeat="mobile in data.data.mobiles|filter:search">
+                <img class="size" ng-src="{{mobile.url}}" alt=""> 
+                <div>  <h4>Mobile ID is:{{mobile.id}}</h4> </div>
+                <div> <h4> Mobile Name is:{{mobile.name}}</h4></div>
+                <div> <h4>Mobile Price is:{{mobile.price}}</h4></div>
+                <button class="addcart-btn" ng-click="toggle(mobile.id)">Add to Cart</button>
+            </li>
+        </ul>
+		</div>
+</body>
+</html>
